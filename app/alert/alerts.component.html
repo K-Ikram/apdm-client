@@ -1,0 +1,16 @@
+<div >
+<h2>Mes alertes</h2>
+<ul class="heroes">
+  <li *ngFor="let alert of alerts" >
+    <!--<span class="badge">{{alert.alert_id}}</span>-->
+    <span>{{alert.alert_date}}</span>
+    <button class="delete" (click)="confirm(alert)" > confirmer</button>
+    <button class="delete"> décliner</button>
+  </li>
+
+</ul>
+<ul>
+<button (click)="getPreviousAlerts()">précédent</button>
+<button (click)="getNextAlerts()">suivant</button>
+
+</ul>

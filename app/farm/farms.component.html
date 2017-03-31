@@ -1,0 +1,15 @@
+<nav>
+  <a routerLink="/alerts" >Mes alertes</a>
+  <a routerLink="/farms" routerLinkActive="active" >Mes fermes</a>
+  <a routerLink="/anomalies" >Mes anomalies</a>
+  <a routerLink="/plots" >Mes parcelles</a>
+  <a routerLink="/parameters" >Paramètres</a>
+</nav>
+<div >
+<h2>Mes fermes</h2>
+<ul class="heroes">
+<li *ngFor="let farm of farms" >
+<!--  <span class="badge">{{farm.id}}</span>-->
+ <span>{{farm.farm_name}}</span>
+
+</li>

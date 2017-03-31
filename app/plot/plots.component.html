@@ -1,0 +1,38 @@
+<h1> Mes parcelles</h1>
+<sebm-google-map class="sebm-google-map-container"
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="true"
+  [zoomControl]="true"
+  >
+
+  <sebm-google-map-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      [iconUrl]="m.icon">
+
+    <sebm-google-map-info-window>
+        <p>{{m.plot}}</p>
+        <ul class="heroes">
+          <li *ngFor="let crop of m.crops" >
+            <!--<span class="badge">{{alert.alert_id}}</span>-->
+            <a> {{crop.name}} </a>
+
+          </li>
+
+        </ul>
+    </sebm-google-map-info-window>
+
+  </sebm-google-map-marker>
+
+</sebm-google-map>
+<!--
+<sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" class="sebm-google-map-container" draggable ="true" [draggingCursor]="'url(http://www.example.com/icon.png), auto;'">
+  <sebm-map-polygon [paths]="paths">
+  </sebm-map-polygon>
+</sebm-google-map>-->

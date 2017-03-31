@@ -1,0 +1,14 @@
+  <div class="col-lg-8" style="display: block;" *ngIf="riskrates">
+    <canvas  id = "myChart" baseChart width="400" height="150"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [chartType]="lineChartType"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+    </canvas>
+  </div>
+<button (click)="refreshData()">CLICK</button>
+                    

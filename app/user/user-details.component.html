@@ -1,0 +1,70 @@
+<!-- new syntax for ng-if -->
+<section>
+  <section *ngIf="isLoading && !errorMessage">
+      Loading our hyperdrives!!! Retrieving data...
+  </section>
+
+  <section class = "col-lg-4 col-md-4 col-sm-12" *ngIf="user">
+    <legend>Bienvenue sur votre compte {{user.username}}.</legend>
+    <ul>
+    <li>Nom : {{user.first_name}}</li>
+    <li>Prénom : {{user.last_name}}</li>
+    <li>Nom d'utilisateur: {{user.username}}</li>
+    <li>Email: {{user.email}}</li>
+    <li>Tél : {{user.phone_contact}}</li>
+    <li>Tél sms : {{user.phone_sms}}</li>
+    <li>Sex : {{user.gender }}</li>
+    <li>Langue: {{user.language }}</li>
+    <li>Staff : {{user.is_staff }}</li>
+    <li>Superuser : {{user.is_superuser }}</li>
+    <li>Date d'inscription : {{user.date_joined }}</li>
+    </ul>
+  </section>
+
+  <section class = "col-lg-8 col-md-8 col-sm-12" *ngIf="user">
+
+    <form (ngSubmit)="saveProfile()" #userForm="ngForm">
+        <legend>Mettre à jour votre profile</legend>
+        <div class="form-group" >
+            <label for="first_name">Prénom: </label>
+            <input class="form-control" type="text" name="first_name" required [(ngModel)]="user.first_name">
+      </div>
+        <div class="form-group" >
+            <label for="last_name">Nom: </label>
+            <input class="form-control" type="text" name="last_name" required [(ngModel)]="user.last_name">
+      </div>
+      <div class="form-group" >
+        <label for="username">Nom d'utilisateur: </label>
+        <input class="form-control" type="text" name="username" required [(ngModel)]="user.username">
+      </div>
+      <div class="form-group" >
+        <label for="email">Email: </label>
+        <input class="form-control" type="email" name="email" required [(ngModel)]="user.email">
+      </div>
+      <div class="form-group" >
+        <label for="gender">Sex:</label>
+        <select class="form-group form-control-lg" name="gender" [(ngModel)]="user.gender">
+          <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+        </select>
+      </div>
+
+      <div class="form-group" >
+        <label for="phone_contact">Téléphone : </label>
+        <input class="form-control" type="text" name="phone_contact" [(ngModel)]="user.phone_contact">
+      </div>
+      <div class="form-group" >
+        <label for="phone_sms">Téléphone SMS : </label>
+        <input class="form-control" type="text" name="phone_sms" [(ngModel)]="user.phone_sms">
+      </div>
+      <div class="form-group" >
+        <label for="language">Langue : </label>
+        <select class="form-group" name="language" [(ngModel)]="user.language">
+          <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+        </select>
+      </div>
+    <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary">Enregister</button>
+    <button type="cancel" class="btn btn-default">Annuler</button>
+    </form>
+  </section>
+
+</section>

@@ -1,0 +1,32 @@
+    <section *ngIf="risks" class=" col-lg-4 ">
+
+		<div class="panel panel-default">
+		  <div class="panel-heading">{{crop}}</div>
+		  <div class="panel-body">
+		  	Culture : {{risks[0].crop_production}},
+			<ul>
+			  <li *ngFor="let risk of risks">
+			    	Maladie : {{risk.disease}},
+			    	{{risk.risk_rate}}%
+			  </li>
+			</ul>
+		    Le {{risks[0].prediction_date}}
+		  </div>
+		</div>
+
+	</section>
+  <div >
+<h2>Mes crops</h2>
+<ul class="heroes">
+  <li *ngFor="let crop of crops" >
+    <!--<span class="badge">{{alert.alert_id}}</span>-->
+    <span>{{crop.crop}}</span> <span>{{crop.start_date}}</span> <span>{{crop.end_date}}</span>
+
+  </li>
+
+</ul>
+<ul>
+<button (click)="getPreviousCrops()">précédent</button>
+<button (click)="getNextCrops()">suivant</button>
+
+</ul>

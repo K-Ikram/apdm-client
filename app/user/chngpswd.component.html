@@ -1,0 +1,21 @@
+  <section class = "col-lg-6 col-md-8 col-sm-12">
+    <form (ngSubmit)="changePassword()" #passForm="ngForm">
+	    <legend>Change Password {{password}}</legend>
+        <div class="form-group">
+            <label for="old_pass">Entrer votre mot de passe courrant :</label>
+            <input type="password" class="form-control" required name="old_pass" [(ngModel)]="old_pass"/>
+        </div>
+         <div class="form-group">
+            <label for="password">Entrer votre nouveau mot de passe :</label>
+            <input (keyup)="checkPasswordMatch()" type="password" class="form-control" required name ="password" [(ngModel)]="password"/>
+        </div>
+         <div class="form-group">
+            <label for="confirmed_password">Confirmer votre nouveau mot de passe :</label>
+            <input (keyup)="checkPasswordMatch()" type="password" class="form-control" required name="confirmed_password" [(ngModel)]="confirmed_password"/>
+        <span>{{message}}</span>
+        </div>
+        <button type="submit" [disabled]="!passForm.form.valid || !match" class="btn btn-primary btn-lg btn-block">
+            Confirmer
+        </button>
+    </form>
+</section>

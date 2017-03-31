@@ -1,0 +1,23 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ng2-bootstrap/x.x.x/ng2-bootstrap.min.js"></script>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+<div class="col-lg-12">
+<nav>
+     <a routerLink="/login">Accueil | </a>
+     <a routerLink="/profile">Profile | </a>
+     <a routerLink="/farms" >Mes fermes | </a>
+     <a routerLink="/plots" >Mes parcelles |</a>
+     <a routerLink="/alerts">Mes alertes | </a>
+     <a routerLink="/changepass" >Changer mot de passe | </a>
+     <a routerLink="/riskrates" >Taux de risques | </a>
+     <a routerLink="/crop" >Culture avec risques |</a>
+    <a routerLink="/addAnomaly" >Signaler une anomalie |</a>
+     <a  (click)="logout()">Logout</a>
+   </nav>
+<div class="page-header">
+  <h1>{{title}}</h1>
+</div>
+</div>
+
+<div class="col-lg-12">
+	<router-outlet></router-outlet>
+</div>

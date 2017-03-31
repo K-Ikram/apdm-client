@@ -1,0 +1,53 @@
+
+<h1> Add anomaly</h1>
+<section *ngIf="isLoading && !errorMessage">
+   Loading our hyperdrives!!! Retrieving data...
+</section>
+<section>
+  <div [hidden]="!submitted">
+  <h2>You submitted the following:</h2>
+  <div class="row">
+    <div class="col-xs-3">Date d'occurence</div>
+    <div class="col-xs-9  pull-left">{{ occurence_date }}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">Maladie</div>
+    <div class="col-xs-9 pull-left">{{ disease}}</div>
+  </div>
+  <div class="row">
+    <div class="col-xs-3">crop production</div>
+    <div class="col-xs-9 pull-left">{{ crop_production }}</div>
+  </div>
+  <br>
+
+</div>
+<div [hidden]="submitted">
+<form class="col-md-6" (ngSubmit)="addAnomaly()"  #addAnomalyForm="ngForm">
+ <div class="form-group">
+
+    <span> Date d'occurence: </span> <input type="datetime-local" [value]="date"
+          (change)="occurence_date=$event.target.value" class="form-control "  name="occurence_date" [(ngModel)]="occurence_date">
+ </div>
+
+ <div>
+     <label>Crop production</label>
+     <select name="crops" class="form-control input-lg"  [(ngModel)]="crop_production" (ngModelChange)="loadDiseases($event)">
+         <option *ngFor="let crop of crops" [value]="crop.crop_production_id" >
+         {{crop.name}}
+         </option>
+     </select>
+ </div>
+ <div>
+     <label>Maladie</label>
+     <select name="maladie" class="form-control input-lg"  [(ngModel)]="disease" >
+         <option *ngFor="let disease of diseases" [value]="disease.disease_id" >
+         {{disease.disease_name}}
+         </option>
+     </select>
+ </div>
+
+ <div >
+     <button type="submit" class="btn btn-success" [disabled]="!addAnomalyForm.form.valid" >submit</button>
+ </div>
+</form>
+</div>

@@ -1,0 +1,17 @@
+/*canvas{
+background:linear-gradient(top, #ea1a07 0%, #f4b841 75%,#f2dd43 100%);
+}*/
+
+canvas {
+  	height: 100px;
+  	background-color: red;
+  	background-image:
+    linear-gradient(
+      	to bottom, 
+		red,
+		rgb(240, 109, 6),
+		rgb(239, 236, 6),
+		rgb(109, 193, 25)
+
+    );
+}
