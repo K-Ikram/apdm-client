@@ -1,0 +1,49 @@
+<div class="item">
+    <div class="card">
+        <img [src]=getIcon()>
+        <div class="text-center">{{crop.name.toUpperCase()}}</div>
+        <div *ngFor="let risk of risks" class="progressbar">
+            <span *ngIf="risk"> {{risk.disease}}</span>
+            <div class="progress progress-xs" *ngIf="risk">
+                <div [ngClass]="getClass(risk)" [style.width.%]= " getValue(risk)" role="progressbar" aria-valuemin="0" aria-valuemax="1" ></div>
+            </div> 
+        </div>
+        <div class=" col-sm-12" *ngIf="weather">
+    		<span style="float: left"> {{weather.name}}</span>
+    		<span style="float: right; padding-left: 10px;"> <i class="fa fa-thermometer-half"></i> {{getTemperature(weather.main.temp)}} °C</span>
+        <span style="float: right"><i class="glyphicon glyphicon-tint"></i>{{weather.main.humidity}} %</span>
+        </div> 
+    </div> 
+    <div class="floating-button" data-placement="center" data-original-title="Info" data-toggle="modal" [attr.data-target]="'#crop'+crop.crop_production_id" >
+        <p class="plus">+</p>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" role="dialog" [attr.id]="'crop'+crop.crop_production_id">
+  <div class="modal-dialog modal-md" >
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" style="padding-left: 15px"><i class="fa fa-info-circle"></i> Informations sur la culture de {{crop.crop["crop_name"]}}</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row col-sm-12">
+          <div class="col-sm-12 col-md-6">
+          <h4>La culture de {{crop.crop["crop_name"]}} </h4>
+            <img [src]=getIcon()>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <p>{{crop.crop["crop_description"]}}</p>
+          </div>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+
+  </div>
+</div>

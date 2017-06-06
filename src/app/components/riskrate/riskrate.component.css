@@ -1,0 +1,63 @@
+.chart{
+  display: block;
+}
+.information{
+  text-align: left;
+  padding: 20px 0px 0px 40px;
+}
+canvas {
+  position: absolute;
+  z-index: 100;
+  top: -32px;
+  left: -45px;
+  width: 100%;
+}
+#red-div {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  right: 60px;
+  height: 37.5%;
+  background-color: rgba(249, 113, 81, 0.8);
+}
+#orange-div {
+  position: absolute;
+  z-index: 50;
+  top: 37.5%;
+  left: 0;
+  right: 60px;
+  height: 18.75%;
+  background-color: #F9DC24;
+}
+#green-div {
+  position: absolute;
+  z-index: 50;
+  top: 56.25%;
+  left: 0;
+  right: 60px;
+  height: 18.75%;
+  background-color: #89DA59;
+}
+.canvas-holder{
+  margin: 0px 0px 30px 40px;
+  padding: 0px 0px 0px 0px;
+  height: 240px;
+  position: relative;
+ /* background-image:
+    linear-gradient(
+        to bottom, 
+    red,
+    rgb(239, 236, 6),
+    rgb(109, 193, 25)
+    );*/
+}
+
+
+span{
+  margin: 10px; 
+}
+.fa{
+  color: #444444;
+  cursor: pointer;
+}

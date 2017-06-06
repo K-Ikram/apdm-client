@@ -1,0 +1,17 @@
+<!-- <div class="loading" [hidden]="!loading">
+  <div class="loader"></div>
+</div> -->
+<div [hidden]="!loading" class="loading">
+	<i class="fa fa-circle-o-notch fa-spin fa-5x fa-fw" ></i>
+	<span class="sr-only">Loading...</span>
+</div>
+
+<div class="row crops" [hidden]="loading">
+<a (click)=" prevCrop()" class="fixed left" ><i class="glyphicon glyphicon-chevron-left"></i></a>
+<div class="col-sm-12">
+  <div *ngFor="let crop of crops; let i=index " class="carousel">
+    <cropitem [crop]="crop" [risks]="risks[i]" ></cropitem>
+  </div> 
+</div>
+<a (click)=" nextCrop()" class="fixed right"><i class="glyphicon glyphicon-chevron-right"></i></a>
+</div>

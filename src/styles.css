@@ -1,1 +1,108 @@
-/* You can add global styles to this file, and also import other style files */
+.progress {background: rgba(245, 245, 245, 1); border: 0px solid rgba(245, 245, 245, 1); border-radius: 2px; height: 10px;}
+.form-control{border-radius: 2px;}
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+}
+.modal-content{
+  -webkit-border-radius: 2px !important;
+    -moz-border-radius: 2px !important;
+    border-radius: 2px !important; 
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    width: 600;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+  .modal-lg {
+    width: 750px;
+  }
+  .modal-md {
+    width: 600px;
+  }
+}
+
+
+body {
+  font-family: 'Quicksand';
+}
+a {
+  -webkit-transition: all 0.35s;
+  -moz-transition: all 0.35s;
+  transition: all 0.35s;
+  font-family: 'Quicksand';
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Quicksand';
+  font-weight: 150;
+  letter-spacing: 1px;
+}
+h2{
+  font-size: 36px;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary.focus, 
+.btn-primary:active, .btn-primary.active, .btn-primary:visited,
+.btn-primary:active:hover, .btn-primary.active:hover{
+background-color: #205067;
+border-color: #205067;
+color:#fff;
+}
+ 
+.btn-primary{
+  background-color: #417690;
+  border-color: #417690;
+  color:#fff;
+ }
+.btn-primary:disabled{
+  background-color: #79aec8;
+  border-color: #79aec8;
+}
+.progress-bar-success{
+  background-color: #57BC90;
+}
+.btn-default{
+  background-color: #77C9d4;
+  border-color: #77C9d4;
+  color: #fff;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default.focus, 
+.btn-default:active, .btn-default.active, .btn-default:visited,
+.btn-default:active:hover, .btn-default.active:hover{
+  background-color: #5eb6c2;
+  border-color: #5eb6c2;
+  color: #fff;
+}
+
+.btn-default:disabled{
+  background-color: #a8d1d9;
+  border-color: #a8d1d9;
+  color:#fff;
+}

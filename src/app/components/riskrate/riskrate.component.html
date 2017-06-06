@@ -1,0 +1,58 @@
+<div class="col-md-12 row">
+	<div *ngFor="let data of chartData; let j=index">
+		<div class="col-md-7 col-sm-12">
+		<div class="text-center" style="margin-bottom: 10px">Taux de risque de la {{diseases[j].disease_name}} sur la culture < {{_crop.name}} > au cours de la semaine courante</div>
+		<div class="canvas-holder">
+			<div id="red-div"></div>
+			<div id="orange-div"></div>
+			<div id="green-div"></div>
+			<canvas  id = "myChart" baseChart 
+			            [datasets]="data"
+			            [labels]="chartLabels[j]"
+			            [chartType]="chartType"
+			            [options]="chartOptions"
+			            [colors]="chartColors"
+			            [legend]="chartLegend"
+			            (chartHover)="chartHovered($event)"
+			            (chartClick)="chartClicked($event)">
+			</canvas>
+		</div>
+	</div>
+	<div class="col-md-5 col-sm-12 information">
+		<h3>{{diseases[j].disease_name}}</h3>
+		<p>{{diseases[j].disease_description.substr(0, 250)}}...
+		<a role="button" data-toggle="modal"
+		[attr.data-target]="'#disease'+diseases[j].disease_id">
+		<i class="fa fa-plus"></i>
+		</a></p>
+	</div>
+
+	<div class="modal fade" role="dialog" [attr.id]="'disease'+diseases[j].disease_id">
+	  <div class="modal-dialog modal-lg" >
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title" style="padding-left: 15px"><i class="fa fa-info-circle"></i> Quelques informations sur la maladie {{diseases[j].disease_name}}</h4>
+	      </div>
+	      <div class="modal-body">
+	        <div class="row col-sm-12">
+	          <div class="col-sm-12 col-md-5">
+	          <h4>Symptômes de la maladie </h4>
+	            <img [src]=getDiseaseImage(diseases[j].disease_id)>
+	          </div>
+	          <div class="col-sm-12 col-md-7">
+	          	<h4>{{diseases[j].disease_name}}</h4>
+	            <p>{{diseases[j].disease_description}}</p>
+	          </div>
+	        </div>
+	        
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+
+	  </div>
+</div>
+</div>

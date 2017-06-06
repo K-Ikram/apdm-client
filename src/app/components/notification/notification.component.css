@@ -1,0 +1,64 @@
+.span-time{
+  color: #a8cbdb;
+  margin-top: 10px;
+  display: block;
+  font-size: 12px;
+}
+.notif-text{
+  text-align: left;
+  float: left;
+  padding:0px;
+  color: #444444;
+}
+.btn-holder{
+  position: relative;
+  width: 82px;
+  height: 40px;
+  float: right;
+}
+.confirm-btn{
+  position: absolute;
+  z-index: 50;
+  top: 30%;
+  left: 0;
+}
+
+.decline-btn{
+  position: absolute;
+  z-index: 50;
+  top:30%;
+  right: 0;
+}
+.checked{
+  height: 40px;
+  padding-top: 10px;
+  background-color: #dff0d8;
+}
+
+a{
+  display: block;
+  /*white-space: nowrap;*/
+  border-bottom: 1px solid #f4f4f4;
+}
+ a:hover{
+  background-color: #F1F2F7;
+  border-top: 1px solid #fff;
+  color: #444444;
+  text-decoration: none;
+}
+ a {
+  color: #444444;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+}
+.notification{
+  margin: 10px 15px 15px 15px;
+}
+
+.col-sm-3{
+  margin-left: 0px;
+  padding-left:0px;
+}
+img{float: left;}
+

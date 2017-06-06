@@ -1,0 +1,34 @@
+<!-- <div class="row col-md-12"> -->
+<sebm-google-map class="sebm-google-map-container "
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="true"
+  [zoomControl]="true"
+  >
+
+  <sebm-google-map-marker
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label,i)"
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [title]="'Parcelle : '+m.plot"
+      [markerDraggable]="m.draggable"
+      [iconUrl]="m.icon"
+      [opacity]="1">
+
+    <sebm-google-map-info-window>
+        <h4>Parcelle : {{m.plot}}</h4>
+        <ul class="list-group">
+          <li *ngFor="let crop of m.crops; let j=index" class="list-group-item">
+            <a  *ngIf=" m.maxrisks" [ngClass]=getClass(m.maxrisks,j) (click)=loadChart(crop)> {{crop.name}} | {{m.maxrisks[j].disease}} </a> 
+            <a  *ngIf="!m.maxrisks[0]" class="green"> {{crop.name}}</a> 
+          </li>
+          <li *ngIf="m.crops.length==0"><span> Aucune culture trouvée !</span></li>
+        </ul>
+    </sebm-google-map-info-window>
+
+  </sebm-google-map-marker>
+</sebm-google-map>
+<!-- </div> -->

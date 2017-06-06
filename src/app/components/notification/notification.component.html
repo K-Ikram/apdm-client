@@ -1,0 +1,39 @@
+<a role ="button" keep-menu-open="true" *ngIf="alert">
+	<div class="notification row" [hidden]="message">
+		<div class="col-sm-3">
+			<img [src]=getDiseaseImage(alert.disease)>
+		</div>
+		<div class="col-sm-6 notif-text">
+			<span><strong>{{alert.disease}}</strong> dans la culture <strong>{{alert.crop_production}}</strong>.</span>
+			<span class="span-time">Il y a {{elapsedTime}}</span>
+		</div>
+		<div class="col-sm-3 btn-holder " >
+		  <button type="button" class="btn btn-danger btn-sm decline-btn" aria-label="Décliner" (click)="decline(alert)">
+		    <span class="fa fa-remove fa-lg" aria-hidden="true"></span>
+		  </button>
+		  <button type="button" class="btn btn-success btn-sm confirm-btn" aria-label="Confirmer" (click)="confirm(alert)">
+		    <span class="fa fa-check fa-lg" aria-hidden="true"></span>
+		  </button>
+		</div>
+	</div>
+	<div class="checked" [hidden]="!message" >{{message}} <i class="fa fa-check"></i></div>
+</a>
+<!-- <a role ="button" keep-menu-open="true" *ngIf="alert">
+	<div class="notification" [hidden]="message">
+
+		<div class="pull-right"><span class="span-time">{{elapsedTime}}</span></div>
+		<div class=" notif-text  pull-left"><span class="pull-left">{{alert.disease}} dans la culture {{alert.crop_production}}.</span></div>
+
+		<div class="btn-holder" >
+		  <button type="button" class="btn btn-success btn-xs confirm-btn" aria-label="Confirmer" (click)="confirm(alert)">
+		    <span class="fa fa-check fa-lg" aria-hidden="true"></span>
+		  </button>
+		  <button type="button" class="btn btn-danger btn-xs decline-btn" aria-label="Décliner" (click)="decline(alert)">
+		    <span class="fa fa-remove fa-lg" aria-hidden="true"></span>
+		  </button>
+		</div>
+		<div>
+	</div>
+	</div>
+	<div class="checked" [hidden]="!message" >{{message}} <i class="fa fa-check"></i></div>
+</a> -->

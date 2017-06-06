@@ -1,0 +1,58 @@
+img{
+	width: 32px;
+	height: 32px;
+	margin-right: 10px;
+}
+.progress {height: 10px;}
+.left{
+	right: 50px;
+	bottom: 0px;
+	position: absolute;
+}
+.right{
+	right: 100px;
+	bottom: 0px;
+	position: absolute;
+}
+@media screen and (min-width: 1000px){
+	.roww{
+		margin-top: 10px;
+		padding: 0px 40px 0px 40px;
+		height: 400px;
+		position: relative;
+		text-align: left;
+	}
+}
+@media screen and (max-width: 1000px){
+	.roww{
+	margin-top: 10px;
+	padding: 0px 20px 0px 20px;
+	position: relative;
+	height: 500px;
+	text-align: left;
+}
+}
+.header{
+	padding: 10px 5px 10px 0px;
+	text-align: left;
+}
+.progress{
+	margin:  0px 20px 0px 0px;
+}
+
+@media screen and  (max-width: 760px) {
+  .btn-text {
+    display:none;
+    visibility: hidden;
+    color: blue;
+  }
+}
+button.pull-right{
+	margin-bottom: 20px;
+	margin-top: 10px;
+	margin-left: 10px;
+}
+span{
+	font-size: 15px;
+	font-weight: 200;
+}

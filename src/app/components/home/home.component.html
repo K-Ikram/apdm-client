@@ -1,0 +1,32 @@
+<menu [menuAlert]="alert_menu" (notify)="onNotifyMenu($event)"></menu>
+
+<div class="page-header"><h2>Protéger mes cultures grâce à APDM</h2></div>
+
+
+<crop (notify)="onNotifyRisks($event)"></crop>
+
+<div class="maps card">
+	
+	<ul class="nav nav-tabs" role="tablist">
+	    <li id="map" class="active" #map>
+	        <a  role="button" (click)="showMap()"><i class="fa fa-home"></i> Mes parcelles </a>
+	    </li>
+	    <li id="chart" #chart>
+	    	<a *ngIf="!chart_disabled" role="button" (click)="showChart()"><i class="fa fa-bar-chart"></i> Risques </a>
+	        <a *ngIf="chart_disabled" class="disabled" id="disabled"><i class="fa fa-bar-chart"></i> Risques</a>
+	    </li>
+	</ul>
+
+	<div class="tab-content">
+		<div *ngIf="!mapTabSelected; map" >
+			<riskrate [_crop]="crop" ></riskrate>
+		</div>
+		<div *ngIf=" mapTabSelected ; chart">
+		    <plot-list (notify)="onNotify($event)" [risksOfCrops]="risksOfCrops"></plot-list>
+		</div>
+	</div>
+</div>
+<div class="card" #alerts>
+	<alerts id="alerts" class="alerts" [notifAlert]="alert" (notify)="onNotifyAlert($event)"></alerts>
+</div>
+

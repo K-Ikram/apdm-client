@@ -1,0 +1,85 @@
+
+<menu></menu>
+
+  <div class="wrapper">
+    <div class="page-header" #header><h2>Modifier mon profile</h2></div>
+    
+    <div class="col-sm-11" *ngIf="!isLoading && successMessage && submitted"> 
+      <div class="alert alert-success" role="alert" ><i class="fa fa-check"></i>{{successMessage}}</div>
+    </div>
+
+    <div class="col-sm-11" *ngIf="!isLoading && errorMessage"> 
+      <div class="alert alert-danger" role="alert" ><i class="fa fa-remove"></i>{{errorMessage}}</div>
+    </div>
+  
+  <div class = "col-md-6 col-sm-12 profile row" *ngIf="user">
+      <form (ngSubmit)="saveProfile()" #userForm="ngForm">
+          <legend><i class="fa fa-pencil-square-o"></i> Modifier mes informations</legend>
+          <div class="form-group" >
+              <label for="first_name">Prénom </label>
+              <input class="form-control" type="text" name="first_name" required [(ngModel)]="user.first_name">
+          </div>
+          <div class="form-group" >
+              <label for="last_name">Nom </label>
+              <input class="form-control" type="text" name="last_name" required [(ngModel)]="user.last_name">
+          </div>
+          <div class="form-group" >
+            <label for="username">Nom d'utilisateur </label>
+            <input disabled="true" class="form-control" type="text" name="username" required [(ngModel)]="user.username">
+          </div>
+          <div class="form-group" >
+            <label for="email">Email </label>
+            <input disabled="true" class="form-control" type="email" name="email" required [(ngModel)]="user.email">
+          </div>
+          <div class="form-group" >
+            <label for="gender">Sex</label>
+            <select class="form-control" name="gender" [(ngModel)]="user.gender">
+              <option *ngFor="let gender of genders" [value]="gender">{{gender}}</option>
+            </select>
+          </div>
+          <div class="form-group" >
+            <label for="phone_contact">Téléphone  </label>
+            <input class="form-control" type="text" name="phone_contact" [(ngModel)]="user.phone_contact">
+          </div>
+          <div class="form-group" >
+            <label for="phone_sms">Téléphone SMS  </label>
+            <input class="form-control" type="text" name="phone_sms" [(ngModel)]="user.phone_sms">
+          </div>
+          <div class="form-group" >
+            <label for="language">Langue  </label>
+            <select class="form-control" name="language" [(ngModel)]="user.language">
+              <option *ngFor="let language of languages" [value]="language">{{language}}</option>
+            </select>
+          </div>  
+          <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary"> <i class="glyphicon glyphicon-ok" ></i> Enregister</button>
+      </form>
+  </div>
+
+    <div class="profile col-md-5 col-sm-12 row" *ngIf="user">
+      <form (ngSubmit)="saveProfile()" #userForm="ngForm">
+        <legend><i class="fa fa-bell-o"></i> Activer les notifications  </legend>
+
+          <div class="form-group checkbox " >
+            <label class="switch">
+              <input type="checkbox" name="email_notif" [(ngModel)]="user.notification_sms ">
+              <div class="slider round"></div>
+            </label>
+            <label class="label" for="sms_notif" >Notification par SMS  ({{user.phone_sms}})</label>
+
+          </div>
+          <div class="form-group checkbox" >
+            <label class="switch">
+              <input type="checkbox" name="email_notif" [(ngModel)]="user.notification_email ">
+              <div class="slider round"></div>
+            </label>
+            <label class="label" for="email_notif">Notification par Email ({{user.email}})</label>            
+          </div>
+          <button type="submit" [disabled]="!userForm.form.valid" class="btn btn-primary"><i class="glyphicon glyphicon-ok" ></i> Enregister</button>
+      </form>
+    </div>
+
+    <div class="profile col-md-5 col-sm-12 row">
+      <chngpswd></chngpswd>
+    </div>
+
+  </div>

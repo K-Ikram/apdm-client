@@ -1,0 +1,24 @@
+<form (ngSubmit)="changePassword()" #passForm="ngForm">
+    <legend><i class="fa fa-lock"></i> Modifier mon mot de passe</legend>
+    <div class="form-group">
+        <label for="old_pass">Mot de passe courant </label>
+        <input type="password" class="form-control" required name="old_pass" [(ngModel)]="old_pass"/>
+    </div>
+     <div class="form-group">
+        <label for="password">Nouveau mot de passe </label>
+        <input (keyup)="checkPasswordMatch()" type="password" class="form-control" required name ="password" [(ngModel)]="password"/>
+    </div>
+     <div class="form-group">
+        <label for="confirmed_password">Confirmation du nouveau mot de passe </label>
+        <input (keyup)="checkPasswordMatch()" type="password" class="form-control" required name="confirmed_password" [(ngModel)]="confirmed_password"/>
+    <span [style.color]="color"  [hidden]="submitted">{{message}}</span>
+    </div>
+    <div [ngClass]="className" role="alert" [hidden]="!submitted">
+        <i [ngClass]="faIcon"></i>{{message}}
+    </div>
+    <button type="submit" [disabled]="!passForm.form.valid || !match" class="btn btn-primary ">
+        <i class="glyphicon glyphicon-ok" ></i> Confirmer
+    </button>
+</form>
+
+
