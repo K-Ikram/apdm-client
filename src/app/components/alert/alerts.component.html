@@ -21,18 +21,18 @@
     </td> 
     <td>
 		<div *ngIf="!alert.feedback_type" >
-	      	<button style ="margin-right: 20px;" class= "btn-success btn" data-toggle="modal" data-target="#confirmModal" ><!-- (click)="confirm(alert)"  -->
+	      	<button style ="margin-right: 20px;" class= "btn-success btn" data-toggle="modal" (click)="confirm(alert)">
             <span class=".btn-text"> Confirmer </span> <i class="glyphicon glyphicon-ok"></i>
           </button>
-	    	  <button class= "btn-danger btn" data-toggle="modal" data-target="#confirmModal" ><!-- (click)="decline(alert)" --> 
+	    	  <button class= "btn-danger btn" data-toggle="modal" (click)="decline(alert)"> 
             <span class=".btn-text"> Décliner </span><i class="glyphicon glyphicon-remove"></i>
           </button>
 		</div>
 		<div *ngIf="alert.feedback_date">
-			<span *ngIf="alert.feedback_type === confirmed" style="color:#3dab7b;">
+			<span *ngIf="alert.feedback_type === 'confirmed'" style="color:#3dab7b;">
 				Confirmée {{getDate(alert.feedback_date)}} par {{alert.client}}
 			</span> 
-			<span *ngIf="alert.feedback_type === denied" style="color:red;">
+			<span *ngIf="alert.feedback_type === 'denied'" style="color:red;">
 				Déclinée {{getDate(alert.feedback_date)}}  par {{alert.client}}
 			</span>
 		</div>
@@ -46,22 +46,22 @@
 
  </div>
 
-          <div id="confirmModal" class="modal fade" role="dialog">
-            <div class="modal-dialog modal-md" >
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Confirmer l'action effectuée</h4>
-                </div>
-                <div class="modal-body">
-                  <div class="row col-sm-12">
-                    <span>Êtes-vous sure de vouloir confirmer/décliner cette alerte?</span>
-                  </div>
-                  <div class="row col-sm-12">
-                    <button class="pull-right btn btn-success" data-dismiss="modal" (click)="accept()">Oui</button>
-                    <button class="pull-right btn btn-default" data-dismiss="modal">Annuler</button> 
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+<div id="confirmModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-md" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Confirmer l'action effectuée</h4>
+      </div>
+      <div class="modal-body">
+        <div class="row col-sm-12">
+          <span>Êtes-vous sure de vouloir confirmer/décliner cette alerte?</span>
+        </div>
+        <div class="row col-sm-12">
+          <button class="pull-right btn btn-success" data-dismiss="modal" (click)="validate()">Oui</button>
+          <button class="pull-right btn btn-default" data-dismiss="modal" (click)="cancel()">Annuler</button> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

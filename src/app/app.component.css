@@ -6,9 +6,9 @@ body {
 .login-body{
   	text-align: center;
   	background-image: url("./../assets/background4.jpg") ;
-	background-size: 100% 100%;
-	background-repeat: no-repeat;
-	overflow-y: hidden;
+	  background-size: 100% 100%;
+	  background-repeat: no-repeat;
+	  overflow-y: hidden;
  }
  .app-body{   
   	text-align: center;

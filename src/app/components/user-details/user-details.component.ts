@@ -19,7 +19,17 @@ export class UserDetailsComponent implements OnInit{
   isLoading: boolean = true;
   submitted: boolean = false;
   genders: string[] = ['homme','femme'];
-  languages: string[] = ['','arabic','french','english','german','spanish','italian'];
+  languages: string[] = ['','arabe','français','anglais','allemand','espagnol','italien'];
+  dict={
+    '':'',
+    'arabic':'arabe',
+    'french':'français',
+    'english':'anglais',
+    'german':'allemand',
+    'spanish':'espagnol',
+    'italian':'italien'
+  }
+  
   constructor(private userService: UserService,
               @Inject(DOCUMENT) private document: Document){}
 
@@ -27,13 +37,14 @@ export class UserDetailsComponent implements OnInit{
       this.userService
         .getProfile()
         .subscribe(
-           /* happy path */ p => this.user = p,
+           /* happy path */ p => { this.user = p; this.user.language=this.dict[this.user.language]},
            /* error path */ e => this.errorMessage = e,
            /* onComplete */ () => this.isLoading = false);
   }
 
   saveProfile(){
       this.isLoading = true;
+
       this.userService.updateProfile(this.user).subscribe(
      /* happy path */ p => {this.user = p;
                             this.successMessage = "Les informations de votre compte ont été modifiées avec succès";

@@ -26,9 +26,9 @@ img{
 @media screen and (max-width: 1000px){
 	.roww{
 	margin-top: 10px;
-	padding: 0px 20px 0px 20px;
+	padding: 0px 20px 40px 20px;
 	position: relative;
-	height: 500px;
+	height: 340px;
 	text-align: left;
 }
 }

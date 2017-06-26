@@ -8,6 +8,16 @@ import { User } from '../models/user';
 @Injectable()
 export class UserService{
   private baseUrl: string = 'http://127.0.0.1:8000/api';
+  dict={
+    '':'',
+    'arabe':'arabic',
+    'français':'french',
+    'anglais':'english',
+    'allemand':'german',
+    'espagnol':'spanish',
+    'italien':'italian'
+  }
+
   constructor(private http : Http,
             private auth: AuthService){
   }
@@ -19,6 +29,7 @@ export class UserService{
   }
 
   updateProfile(user: User): Observable<User>{
+    user.language = this.dict[user.language];
     console.log('updating your profile',user);
     return this.http
       .put(`${this.baseUrl}/updateProfile/${user.client_id}`, JSON.stringify(user), {headers: this.getHeaders()})

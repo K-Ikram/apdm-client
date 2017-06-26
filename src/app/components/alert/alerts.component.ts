@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Alert } from '../../models/alert';
 import { AlertService } from '../../services/alert.service';
 import {  Response} from '@angular/http';
-
+declare var $: any;
 
 @Component({
   selector: 'alerts',
@@ -14,16 +14,13 @@ import {  Response} from '@angular/http';
 
 
 export class AlertsComponent implements OnInit {
-  page =1;
-  noNex = false;
-  noPrec= true;
-  alerts: Array<Alert>;
-  next:string; 
-  previous: string;
-  feedback_type:string;
-  confirmed="confirmed";
-  denied="denied";
-  pages:Array<any>;
+  private page =1;
+  private noNex = false;
+  private noPrec= true;
+  private alerts: Array<Alert>;
+  private next:string; 
+  private previous: string;
+  private alertOkay: Alert;
   private alertsUrl = 'http://127.0.0.1:8000/api/alertsbyclient/?page=';  // URL to web api
   @Input() notifAlert : Alert;
   @Output() notify: EventEmitter<Alert> = new EventEmitter<Alert>();
@@ -67,22 +64,56 @@ export class AlertsComponent implements OnInit {
   }
   confirm(alert : Alert): void {
      let date = new Date().toISOString();
-     alert.feedback_date = date;
-     alert.feedback_type="confirmed";
      var currentUser = JSON.parse(localStorage.getItem('username'));
-     alert.client = currentUser && currentUser.username;
-     this.alertService.confirmAlert(alert);
-     this.notify.emit(alert);
+     this.alertOkay = new Alert();
+     this.alertOkay.alert_id =alert.alert_id;
+     this.alertOkay.alert_date = alert.alert_date;
+     this.alertOkay.crop_production = alert.crop_production;
+     this.alertOkay.disease = alert.disease;
+     this.alertOkay.risk_rate = alert.risk_rate;
+     this.alertOkay.feedback_date = date;
+     this.alertOkay.feedback_type="confirmed";
+     this.alertOkay.client = currentUser && currentUser.username;
+     $("#confirmModal").modal('show');
   }
 
   decline(alert : Alert): void {
-    let date = new Date().toISOString();
-     alert.feedback_date = date;
-     alert.feedback_type="denied";
+     let date = new Date().toISOString();
      var currentUser = JSON.parse(localStorage.getItem('username'));
-     alert.client = currentUser && currentUser.username;
-     this.alertService.declineAlert(alert);
-     this.notify.emit(alert);
+     this.alertOkay = new Alert();
+     this.alertOkay.alert_id =alert.alert_id;
+     this.alertOkay.alert_date = alert.alert_date;
+     this.alertOkay.crop_production = alert.crop_production;
+     this.alertOkay.disease = alert.disease;
+     this.alertOkay.risk_rate = alert.risk_rate;
+     this.alertOkay.feedback_date = date;
+     this.alertOkay.feedback_type="denied";
+     this.alertOkay.client = currentUser && currentUser.username;
+     $("#confirmModal").modal('show');
+  }
+
+  validate():void{
+    if(this.alertOkay.feedback_type && this.alertOkay.feedback_type==="confirmed"){
+      this.alertService.confirmAlert(this.alertOkay);        
+    }
+    else if(this.alertOkay.feedback_type && this.alertOkay.feedback_type==="denied"){
+      this.alertService.declineAlert(this.alertOkay);        
+    }
+    else return;
+    var _alerts :Alert[] = [];
+    for(let alert of this.alerts){
+        if(alert.alert_id==this.alertOkay.alert_id){
+          _alerts.push(this.alertOkay);
+        }
+        else{
+          _alerts.push(alert)
+        }
+    }
+    this.alerts = _alerts;
+    this.notify.emit(this.alertOkay);
+  }
+  cancel():void{
+    this.alertOkay=null;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -123,8 +154,22 @@ export class AlertsComponent implements OnInit {
   }
 
   getDate(date:string):string{
-    let dt = new Date(date);
+    let dt = this.convertUTCDateToLocalDate(new Date(date));
+
     return 'le ' + (dt.getDay()+1)+'/'+(dt.getMonth()+1)+'/'+dt.getFullYear()+' à '+dt.getHours()+':'+dt.getMinutes();
   }
+  convertUTCDateToLocalDate(date:Date):Date {
+    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+    var offset = date.getTimezoneOffset() / 60;
+    console.log("offset",offset);
+
+    var hours = date.getHours();
+
+    newDate.setHours(hours + offset);
+    console.log("after convert",newDate);
+
+    return newDate;   
+}
 
 }

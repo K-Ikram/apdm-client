@@ -13,7 +13,7 @@ declare var $: any;
 })
 export class MenuComponent implements OnInit {
   private username: string;
-  private title =" My Smart farm";
+  private title =" SafeCrop";
   private alerts : Alert[];
   private alertCount : number = 0;
   @Input() menuAlert: Alert;

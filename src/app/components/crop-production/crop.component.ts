@@ -19,6 +19,7 @@ export class CropComponent implements OnInit{
   private weather : any;
   private crops: CropProduction[]=null;
   private loading: boolean=null;
+  private error: boolean=null;
   private maxItems : number;
   private index : number ;
   @Output() notify: EventEmitter<any> = new EventEmitter<any>();
@@ -45,8 +46,9 @@ export class CropComponent implements OnInit{
            },
             err => {
               console.log("Error");
-              //alert("server error dans crop component");
-               this.router.navigate(['/login']);
+              this.loading=false;
+              this.error=true;
+              this.router.navigate(['/login']);
             }
           );
   }
@@ -64,6 +66,11 @@ export class CropComponent implements OnInit{
         this.slide()
         this.loading=false;
         this.notify.emit(this.risks);
+    },
+    (e)=>{
+      console.log("error");
+      //this.loading=false;
+      //this.error=true;
     })
   }
 

@@ -1,21 +1,13 @@
 <menu></menu>
 
-<!-- <div class="col-md-12" [hidden]="!submitted">
-  <div class="alert alert-success" role="alert" >Votre signalisation a été envoyée.</div>
-  <div>
-    <button class="btn btn-primary" (click)="submitted=!submitted">Signaler une autre anomalie</button>
-  </div>
-</div> -->
-
-<div class="page-header"><h2>Signaler une anomalie dans ma ferme</h2></div>
 <div class="wrapper">
+<div class="page-header"><h2>Signaler une anomalie dans ma ferme</h2></div>
 
-    <div class="col-sm-11" [hidden]="!submitted"> 
+    <div class="col-sm-12" [hidden]="!submitted"> 
       <div class="alert alert-success" role="alert" ><i class="fa fa-check"></i>Votre signalisation a été bien envoyée.</div>
     </div>
-
-    <div class="col-md-2"></div>
-    <div class="report col-md-7 col-sm-12">    
+    
+    <div class="report col-md-offset-3 col-md-6 col-sm-12">    
     <form  #addAnomalyForm="ngForm">
       <div class="form-group">
         <label>Séléctionner la date d'occurence de l'anomalie</label> 

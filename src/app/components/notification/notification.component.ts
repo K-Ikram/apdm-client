@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if(changes["alert"].currentValue)
       {
-          this.elapsedTime = this.convertTime(this.alert.alert_date);
+          this.elapsedTime = convertTime(this.alert.alert_date);
           if(this.alert.feedback_type){
             if(this.alert.feedback_type==="denied"){
               this.message = 'Cette alerte a été déclinée';
@@ -33,41 +33,8 @@ export class NotificationComponent implements OnInit {
           }
       }
     
-  }  
-  convertTime(date:string):string{
-      var period : string;
-      let dt1 = new Date().getTime(); 
-      let dt2 = new Date(date).getTime();
-      console.log('dates',dt1,dt2);
-      var time = ( dt1- dt2)/(1000*3600) ;
-      console.log('time elapsed',time);
-      if(time<0) {
-          period = "valeur negative";
-          return period;
-      }
-      if(time<1){
-        time = time*60;
-        period = Math.floor(time)+ ' minutes';
-        if(time<1)
-          time = time*60;
-          period = Math.floor(time)+ ' secondes'
-      }
-      else{
-        if(time>24){
-          time = time/24;
-          period = Math.floor(time) + ' jours'
+  } 
 
-          if(time>30){
-            time = time/30;
-            period = Math.floor(time)+ ' mois';
-          }
-        }
-        else{
-          period = Math.floor(time) + ' heures';
-        }
-      }
-      return period;
-    }
   confirm(): void {
      let date = new Date().toISOString();
      this.alert.feedback_date = date;
@@ -101,3 +68,55 @@ export class NotificationComponent implements OnInit {
 
 
 }
+function convertUTCDateToLocalDate(date:Date):Date {
+    var newDate = new Date(date.getTime()+date.getTimezoneOffset()*60*1000);
+
+    var offset = date.getTimezoneOffset() / 60;
+    console.log("offset",offset);
+
+    var hours = date.getHours();
+
+    newDate.setHours(hours + offset);
+    console.log("after convert",newDate);
+
+    return newDate;   
+}
+
+function convertTime(dateStr:string):string{
+    var period : string;
+    var dt1 = new Date().getTime();
+    
+    console.log("UTC alert date ",new Date(dateStr));
+    var dt2 = convertUTCDateToLocalDate(new Date(dateStr)).getTime();
+    console.log('alert date',convertUTCDateToLocalDate(new Date(dateStr)));
+    console.log('current',new Date().toString())
+    var hours = ( dt1- dt2)/(1000*3600) ;
+    console.log('hours elapsed',hours);
+    if(hours<0) {
+        period = "Inconnue";
+        return period;
+    }
+    if(hours<1){
+      let minutes = hours*60;
+      period = Math.floor(minutes)+ ' minutes';
+      if(minutes<1){
+        let seconds = minutes*60;
+        period = Math.floor(seconds)+ ' secondes'          
+      }
+    }
+    else{
+      if(hours>24){
+        let days = hours/24;
+        period = Math.floor(days) + ' jours'
+
+        if(days>30){
+          let monthes = days/30;
+          period = Math.floor(monthes)+ ' mois';
+        }
+      }
+      else{
+        period = Math.floor(hours) + ' heures';
+      }
+    }
+    return period;
+  }

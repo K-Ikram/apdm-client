@@ -3,6 +3,7 @@ import { UserDetailsComponent}from './components/user-details/user-details.compo
 import { LoginComponent}from './components/authentication/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddAnomalyComponent } from './components/anomaly/add-anomaly.component';
+import { Component404 } from './components/404/404.component';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './services/auth.guard';
 
@@ -28,11 +29,20 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: '404',
+    component: Component404,
+    canActivate: [AuthGuard],
+  },
   // map '/' to '/home' as our default route
   {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
+  },
+  {
+    path: '**', 
+    redirectTo: '/404',
   },
 ];
 

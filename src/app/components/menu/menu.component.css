@@ -48,7 +48,7 @@
   color: #666666;
   padding: 7px 10px;
   border-bottom: 1px solid #f4f4f4;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 
@@ -62,7 +62,7 @@
   max-height: 200px;
 }
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu{
-  max-height: 400px;
+  max-height: 460px;
 }
 
 .navbar-nav > .general-menu > .dropdown-menu > li .menu > li > a{
@@ -168,12 +168,14 @@
     margin: 0;
     padding: 10px;    
 }
+ 
 @media screen and (min-width: 991px){
   .account-menu {
     margin-right: 60px;
   }
   .navbar-brand{
-    padding-left: 60px;
+    padding: 0 0 0 60px;
+    margin-top: 5px;
   }  
 }
 @media screen and (max-width: 991px){
@@ -183,5 +185,9 @@
     margin: 0;
     top: 100%;
   }
+  .navbar-brand{
+    padding: 0 0 0 20px;
+    margin-top: 5px;
+  } 
 
 }

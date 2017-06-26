@@ -19,6 +19,7 @@ import { PlotsComponent } from './components/plot/plot.component';
 import { CropitemComponent } from './components/cropitem/cropitem.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NotificationComponent } from './components/notification/notification.component';
+import { Component404 } from './components/404/404.component';
 
 import { PlotService} from './services/plot.service';
 import { DiseaseService}  from './services/disease.service';
@@ -46,6 +47,7 @@ import { RiskRateService } from './services/riskrate.service';
     CropitemComponent,
     MenuComponent,
     NotificationComponent,
+    Component404,
 
   ],
   imports: [
